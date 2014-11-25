@@ -1,0 +1,11 @@
+--- Makefile_origin	2009-04-30 12:18:46.000000000 +0300
++++ Makefile	2014-01-15 16:02:01.470415911 +0200
+@@ -1,4 +1,7 @@
+-ttf2eot: OpenTypeUtilities.o ttf2eot.o
++patch: add_stddef.patch
++	if [ ! -f OpenTypeUtilities_patched ]; then patch OpenTypeUtilities.cpp < add_stddef.patch && touch OpenTypeUtilities_patched; fi
++
++ttf2eot: patch OpenTypeUtilities.o ttf2eot.o
+ 	g++ -o $@ $^
+ 
+ clean:
